@@ -1,12 +1,12 @@
 ---
 # tasks file for deploy_docker
 
- - name: copy docker-file
+ - name: Copy docker-compose.yml file
    copy:
      src: docker-compose.yml
      dest: /home/testuser/
 
- - name: run the service  docker-compose.yml
+ - name: Run services from docker-compose.yml
    become: yes
    docker_service:
      project_src: /home/testuser/
