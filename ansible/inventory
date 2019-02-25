@@ -1,5 +1,5 @@
 [all:vars]
-ansible_user=test
-ansible_ssh_pass=test
+ansible_user=testuser
+ansible_ssh_pass=y58WCQ56BA8yftd6
 [test]
-34.76.123.162
+95.216.170.95

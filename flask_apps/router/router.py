@@ -8,7 +8,7 @@ def index():
 
 @app.route("/hello")
 def hello():
-    return redirect("http://ip:5000")
+    return redirect("http://95.216.170.95:5000")
 
 
 
