@@ -42,16 +42,19 @@
      path: /usr/local/bin/docker-compose
      mode: 0755
 
- - name: uninstal conflict modules
-   pip:
-     name: "{{ item }}"
-     state: absent
-   with_items:
-     - "docker"
-     - "docker-py"
-
+# - name: uninstal conflict modules
+#   pip:
+#     name: "{{ item }}"
+#     state: absent
+#   with_items:
+#     - "docker"
+#     - "docker-py"
+ - name: install setuptools
+   command: pip install setuptools==1.1.6
 
  - name: install docker again
-   pip:
-     name: docker
+   command: pip install docker
+
+ - name: install pip dockr-compose
+   command: pip install docker-compose
 
