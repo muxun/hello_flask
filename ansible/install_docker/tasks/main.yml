@@ -1,0 +1,57 @@
+---
+# tasks file for install_docker
+ - name: "Add Docker gpg key"
+   become: yes
+   apt_key:
+     url: https://download.docker.com/linux/ubuntu/gpg 
+     state: present
+
+ - name: "Add docker repository"
+   become: yes
+   apt_repository:
+     repo: "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"
+     state: present
+     filename: docker
+
+ - name: "Install misc packages"
+   become: yes
+   apt:
+     name: "{{ item }}"
+     update_cache: yes
+   with_items:
+     - "aptitude"
+     - "apt-transport-https"
+     - "ca-certificates"
+     - "curl"
+     - "software-properties-common"
+
+ - name: "install docker-ce"
+   become: yes
+   apt: 
+     name: "docker-ce"
+     update_cache: yes
+
+
+ - name: install docker-compose
+   become: yes
+   shell: curl -L "https://github.com/docker/compose/releases/download/1.23.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+     
+ - name: chmod +x to docker compose 
+   become: yes
+   file:
+     path: /usr/local/bin/docker-compose
+     mode: 0755
+
+ - name: uninstal conflict modules
+   pip:
+     name: "{{ item }}"
+     state: absent
+   with_items:
+     - "docker"
+     - "docker-py"
+
+
+ - name: install docker again
+   pip:
+     name: docker
+

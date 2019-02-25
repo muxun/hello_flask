@@ -1,0 +1,5 @@
+[all:vars]
+ansible_user=test
+ansible_ssh_pass=test
+[test]
+34.76.123.162

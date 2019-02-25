@@ -1,0 +1,9 @@
+---
+ - name: Install and deploy microservices flask app
+   hosts: test
+   gather_facts: False
+   become: true
+   roles:
+     - ansible_prerequisites
+     - install_docker
+     - deploy_docker

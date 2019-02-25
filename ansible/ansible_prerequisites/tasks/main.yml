@@ -1,0 +1,16 @@
+---
+# tasks file for ansible_prerequisites
+   
+ - name: install python 2
+   raw: test -e /usr/bin/python || (apt -y update && apt install -y python-minimal)
+
+ - name: install pip
+   become: yes
+   raw: apt install -y python-pip
+
+ - name: install ssl backports
+   become: yes
+   apt: 
+     name: python-backports.ssl-match-hostname
+
+
